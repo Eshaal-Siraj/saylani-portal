@@ -4,20 +4,130 @@
   <title>Saylani Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    body { background: #f5f6fa; }
-    .navbar-brand { color: #66b032 !important; font-weight: bold; }
-    .nav-link.active { font-weight: bold; color: #0057a8 !important; }
-    .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .section { display: none; }
-    .section.active { display: block; }
-  </style>
-</head>
+<style>
+  :root {
+    --smit-green: #1e6f3f;
+    --smit-light-green: #66b032;
+    --smit-blue: #007bff;
+    --smit-dark-blue: #0056b3;
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+
+  body {
+    background: var(--bg-gradient);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    color: #333;
+  }
+
+  /* Navbar Enhancement */
+  .navbar {
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
+    border-bottom: 3px solid var(--smit-light-green);
+  }
+
+  .nav-link {
+    margin: 0 10px;
+    padding: 8px 20px !important;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link.active {
+    background: var(--smit-light-green) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(102, 176, 50, 0.3);
+  }
+
+  /* Welcome Message Styling */
+  .welcome-message {
+    background: white;
+    border-left: 8px solid var(--smit-green);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+  }
+
+  /* Refined Stat Cards (Green & Blue Focus) */
+  .bg-success {
+    background: linear-gradient(135deg, #1e6f3f 0%, #66b032 100%) !important;
+  }
+
+  .bg-primary {
+    background: linear-gradient(135deg, #004e92 0%, #000428 100%) !important;
+  }
+
+  .bg-warning {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important; /* Teal/Green Gradient */
+    color: white !important;
+  }
+
+  .bg-info {
+    background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%) !important;
+  }
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+
+  .card h6 {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+
+  /* Content Sections */
+  .section {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  /* Table Customization */
+  .table-dark {
+    background-color: var(--smit-green) !important;
+    border: none;
+  }
+
+  .btn {
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Custom Input Styling */
+  .form-control {
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: var(--smit-light-green);
+    box-shadow: 0 0 0 0.25rem rgba(102, 176, 50, 0.25);
+  }
+</style></head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-lg mb-4 py-2">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"> <img src="assets/smit-logo.png" width="150" class="mb-3 mx-auto d-block"></a>
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/smit-logo.png" width="140" class="me-2">
+    </a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item"><a class="nav-link active" href="#" data-section="dashboard">Dashboard</a></li>
@@ -32,31 +142,33 @@
 </nav>
 
 <div class="container">
+  <!-- WELCOME MESSAGE - Eshaal ka message -->
+  <div class="welcome-message">
+    👋 Welcome back, <strong>Eshaal</strong>! <span>SMIT Portal</span>
+  </div>
 
   <!-- Dashboard -->
   <div id="dashboard" class="section active">
-    <div class="row g-3 mb-4">
-      <div class="col-md-3"><div class="card p-3 text-white bg-success"><h6>Total Lost Items</h6><h3 id="totalLost">0</h3></div></div>
-      <div class="col-md-3"><div class="card p-3 text-white bg-primary"><h6>Complaints Submitted</h6><h3 id="totalComplaints">0</h3></div></div>
-      <div class="col-md-3"><div class="card p-3 text-white bg-warning"><h6>Volunteers</h6><h3 id="totalVolunteers">0</h3></div></div>
-      <div class="col-md-3"><div class="card p-3 text-white bg-info"><h6>Notifications</h6><h3 id="totalNotifications">0</h3></div></div>
+    <div class="row g-4 mb-4">
+      <div class="col-md-3"><div class="card p-4 bg-success"><h6>📦 Total Lost Items</h6><h2 id="totalLost">0</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 bg-primary"><h6>📋 Complaints Submitted</h6><h2 id="totalComplaints">0</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 bg-warning"><h6>🤝 Volunteers</h6><h2 id="totalVolunteers">0</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 bg-info"><h6>🔔 Notifications</h6><h2 id="totalNotifications">0</h2></div></div>
     </div>
   </div>
 
   <!-- Lost & Found -->
   <div id="lostFound" class="section">
-    <div class="card p-3 mb-3">
-      <h4 class="text-success">Post Lost / Found Item</h4>
-      <div class="d-flex gap-2 mb-2">
-        <input id="title" class="form-control" placeholder="Title">
-        <textarea id="desc" class="form-control" placeholder="Description"></textarea>
-        <button id="postBtn" class="btn btn-success">Post</button>
-        <button id="updateBtn" class="btn btn-success" style="display:none;">Update</button>
+    <div class="card p-4 mb-4">
+      <h4 class="text-success fw-bold">➕ Post Lost / Found Item</h4>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <input id="title" class="form-control w-25" placeholder="Title">
+        <textarea id="desc" class="form-control w-25" placeholder="Description" rows="1"></textarea>
+        <button id="postBtn" class="btn btn-success px-4">Post</button>
+        <button id="updateBtn" class="btn btn-success px-4" style="display:none;">Update</button>
       </div>
-      <table class="table table-striped table-hover">
-        <thead class="table-dark">
-          <tr><th>Title</th><th>Description</th><th>Status</th><th>Action</th></tr>
-        </thead>
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark"><tr><th>Title</th><th>Description</th><th>Status</th><th>Action</th></tr></thead>
         <tbody id="items"></tbody>
       </table>
     </div>
@@ -64,21 +176,19 @@
 
   <!-- Complaints -->
   <div id="complaints" class="section">
-    <div class="card p-3 mb-3">
-      <h4 class="text-primary">Submit Complaint</h4>
-      <div class="d-flex gap-2 mb-2">
-        <select id="complaintCategory" class="form-control">
+    <div class="card p-4 mb-4">
+      <h4 class="text-primary fw-bold">📝 Submit Complaint</h4>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <select id="complaintCategory" class="form-control w-auto">
           <option>Internet</option>
           <option>Electricity</option>
           <option>Water</option>
         </select>
-        <textarea id="complaintDesc" class="form-control" placeholder="Description"></textarea>
-        <button id="submitComplaintBtn" class="btn btn-primary">Submit</button>
+        <textarea id="complaintDesc" class="form-control w-25" placeholder="Description" rows="1"></textarea>
+        <button id="submitComplaintBtn" class="btn btn-primary px-4">Submit</button>
       </div>
-      <table class="table table-striped table-hover">
-        <thead class="table-dark">
-          <tr><th>Category</th><th>Description</th><th>Status</th><th>Action</th></tr>
-        </thead>
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark"><tr><th>Category</th><th>Description</th><th>Status</th><th>Action</th></tr></thead>
         <tbody id="complaintsList"></tbody>
       </table>
     </div>
@@ -86,24 +196,22 @@
 
   <!-- Volunteers -->
   <div id="volunteers" class="section">
-    <div class="card p-3 mb-3">
-      <h4 class="text-warning">Volunteer Registration</h4>
-      <div class="d-flex gap-2 mb-2">
-        <input id="volName" class="form-control" placeholder="Name">
-        <input id="eventName" class="form-control" placeholder="Event Name">
-        <select id="availability" class="form-control">
+    <div class="card p-4 mb-4">
+      <h4 class="text-warning fw-bold">🙋 Volunteer Registration</h4>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <input id="volName" class="form-control w-auto" placeholder="Name">
+        <input id="eventName" class="form-control w-auto" placeholder="Event Name">
+        <select id="availability" class="form-control w-auto">
           <option value="">Select Availability</option>
           <option>Morning</option>
           <option>Afternoon</option>
           <option>Evening</option>
           <option>Full Day</option>
         </select>
-        <button id="registerVolunteerBtn" class="btn btn-warning">Register</button>
+        <button id="registerVolunteerBtn" class="btn btn-warning px-4">Register</button>
       </div>
-      <table class="table table-striped table-hover">
-        <thead class="table-dark">
-          <tr><th>Name</th><th>Event</th><th>Availability</th><th>Status</th><th>Action</th></tr>
-        </thead>
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark"><tr><th>Name</th><th>Event</th><th>Availability</th><th>Status</th><th>Action</th></tr></thead>
         <tbody id="volunteerList"></tbody>
       </table>
     </div>
@@ -111,9 +219,9 @@
 
   <!-- Admin -->
   <div id="admin" class="section">
-    <h4 class="text-danger">Admin Dashboard</h4>
-    <div id="adminLostFound"></div>
-    <div id="adminComplaints"></div>
+    <h4 class="text-danger fw-bold mb-4">⚙️ Admin Dashboard</h4>
+    <div id="adminLostFound" class="mb-4"></div>
+    <div id="adminComplaints" class="mb-4"></div>
     <div id="adminVolunteers"></div>
   </div>
 
@@ -126,7 +234,7 @@
 <script src="js/app.js"></script>
 
 <script>
-  // Navbar section switching
+  // Navbar section switching (untouched logic)
   document.querySelectorAll('.nav-link').forEach(link=>{
     link.addEventListener('click', e=>{
       e.preventDefault();
@@ -138,12 +246,13 @@
     });
   });
 
-  // Buttons binding
+  // Buttons binding (exactly as given)
   document.getElementById("postBtn").addEventListener("click", postItem);
   document.getElementById("updateBtn").addEventListener("click", updateItem);
   document.getElementById("submitComplaintBtn").addEventListener("click", submitComplaint);
   document.getElementById("registerVolunteerBtn").addEventListener("click", registerVolunteer);
 </script>
 
+<!-- Note: Eshaal ka welcome message already hardcoded above - logic untouched -->
 </body>
-</html>
+</html> 
